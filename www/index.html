@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+		  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+			integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+			crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+			integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+			crossorigin="anonymous"></script>
+	<title>SmartInsurance</title>
+</head>
+<body>
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+			data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
+			aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<a class="navbar-brand" href="#">
+		SmartInsurance
+	</a>
+
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item" id="menu_open">
+				<a class="nav-link" href="#" onclick="return UiMenu.show('menu_open', 'content_open');">All in One</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div class="row" style="padding-top: 120px">
+
+	<div class="col-md-8">
+
+		<div class="container" id="loading_boxes">
+			<div class="row">
+				<h1>Contracts are loading....</h1>
+			</div>
+		</div>
+
+		<div class="container" id="loaded_boxes" style="display: none;">
+
+			<div id="content_open" style="display: block">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>What could Anyone do?</h2>
+					</div>
+
+					<div class="col-md-12">
+						<div class="row">
+							<div id="investors_pull" class="col-md-6">
+
+							</div>
+
+							<div id="customers_pull" class="col-md-6">
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row" style="padding-top: 40px">
+					<div class="col-md-12">
+						<h2>How to be Investor?</h2>
+					</div>
+
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-4">
+								<input class="form-control mr-sm-2" type="text" placeholder="Gives" id="investor_gives"
+									   value="10000"/>
+							</div>
+							<div class="col-md-4">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Gets" id="investor_gets"
+										   value="13"/>
+									<span class="input-group-addon">%</span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+										onClick="InsuranceInvestor.invest(investorAccount, $('#investor_gives').val(), $('#investor_gets').val()); return false;">
+									Invest [as 1]
+								</button>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-md-12" style="padding-top: 5px">
+						<div class="row">
+							<div class="col-md-4">
+								<input class="form-control mr-sm-2" type="text" placeholder="Gives" id="investor_gives2"
+									   value="10000"/>
+							</div>
+							<div class="col-md-4">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Gets" id="investor_gets2"
+										   value="13"/>
+									<span class="input-group-addon">%</span>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+										onClick="InsuranceInvestor.invest(investorAccount2, $('#investor_gives2').val(), $('#investor_gets2').val()); return false;">
+									Invest [as 2]
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row" style="padding-top: 40px">
+					<div class="col-md-12">
+						<h2>How to be Customer?</h2>
+					</div>
+
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-4">
+								<input class="form-control mr-sm-2" type="text" placeholder="Gives" id="customer_insure"
+									   value="10000"/>
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+										onClick="InsuranceCustomer.search($('#customer_insure').val()); return false;">
+									Find Best Insurance
+								</button>
+							</div>
+
+							<div class="col-md-4" id="customer_percent" style="display:none">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Gets" id="customer_gets"
+										   value="?"/>
+									<span class="input-group-addon">%</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="col-md-12" style="padding-top: 5px">
+						<div class="row">
+							<div class="col-md-4">
+								<input class="form-control mr-sm-2" type="text" placeholder="Gives" id="customer_pay"
+									   value="2000"/>
+							</div>
+							<div class="col-md-2">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Gets" id="customer_gets2"
+										   value="20"/>
+									<span class="input-group-addon">%</span>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="input-group">
+									<span class="input-group-addon">id</span>
+									<input class="form-control" type="text" placeholder="ID" id="customer_pay_id"
+										   value=""/>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+										onClick="InsuranceCustomer.buyByID(customerAccount, $('#customer_pay').val(), $('#customer_pay_id').val()); return false;">
+									Buy by ID
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+			<div id="content_admin" style="display: none">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>What could Admin do?</h2>
+					</div>
+				</div>
+			</div>
+
+			<div id="content_investor" style="display: none">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>What could Investor do?</h2>
+					</div>
+				</div>
+			</div>
+
+			<div id="content_customer" style="display: none">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>What could Customer do?</h2>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-md-4" id="info_alerts">
+
+	</div>
+</div>
+
+<hr>
+
+<footer>
+	<p>&copy; <a href="http://blocksoft.biz">blocksoft.biz</a> 2017</p>
+	<p><a href="https://github.com/orgs/block-soft/">github</a></p>
+</footer>
+</div> <!-- /container -->
+
+
+<script src="./libs/web3.js"></script>
+<script src="./app/common.js"></script>
+<script src="./app/init.js"></script>
+<script src="./app/contract_public.js"></script>
+<script src="./app/contract_investor.js"></script>
+<script src="./app/contract_customer.js"></script>
+</body>
+</html>
